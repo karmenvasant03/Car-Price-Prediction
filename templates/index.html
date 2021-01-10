@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            background-image: linear-gradient(to right, #333, #ffdb00, #333);
+        }
+
+        .card-header{
+            text-align: center;
+        }
+
+        button{
+            padding: 15px;
+            margin: 40px 0;
+        }
+
+        h1{
+            font: bold sans-serif ;
+        }
+
+        label{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .result{
+            font-size: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="offset-sm-3 col-sm-6">
+        <div class="card text-white bg-primary">
+            
+            <div class="card-header">
+                <h1>CAR PRICE CALCULATOR</h1>
+                <small>Know Your Car Value</small>
+            </div>
+    
+            <div class="card-body">
+                <form action="{{ url_for('predict')}}" method="post">
+
+                    <div class="form-group">
+                        <label>Manufacturing Year</label>
+                        <input id="first" class="form-control" name="Year" placeholder="Enter year" type="number ">
+                    </div> 
+                    
+                    <div class="form-group">
+                        <label>Showroom Price</label>
+                        <input id="second" class="form-control" name="Present_Price" placeholder="Enter Price in Lakhs" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kilometers Driven</label>
+                        <input id="third" name="Kms_Driven" class="form-control" placeholder="Enter Kilometers driven by car" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <label>How many owners the car had?</label>
+                        <select name="Owner" id="fourth" class="form-control" required="required">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dealer or Individual?</label>
+                        <select name="Seller_Type_Individual" id="resea" class="form-control" required="required">
+                            <option value="Dealer">Dealer</option>
+                            <option value="Individual">Individual</option>
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Fuel type</label>
+                                <select name="Fuel_Type_Petrol" id="fuel" required="required" class="form-control">
+                                    <option value="Petrol">Petrol</option>
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Diesel">CNG</option>
+                                </select>
+                            </div> 
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Transmission type</label>
+                                <select name="Transmission_Mannual" id="research" class="form-control" required="required">
+                                     <option value="Mannual">Manual Car</option>
+                                     <option value="Automatic">Automatic Car</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+    
+                   <button id="sub" type="submit" class="btn btn-block btn-warning" >Check Price</button> 
+                </form>
+            </div>
+
+            <h3 class="result">{{ prediction_text }}<h3>
+
+        </div>
+    </div> 
+
+</body>
+</html>
